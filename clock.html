@@ -2,6 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
+  <title>CodePen - CSS Variable-Powered Clock</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
   <style>
@@ -11,6 +12,9 @@
     .clock-minutes:before {
       content: var(--timer-minutes);
     }
+    .clock-seconds:before {
+      content: var(--timer-seconds);
+    }
     .clock-ampm:before {
       content: var(--timer-ampm);
     }
@@ -18,6 +22,7 @@
     body {
       font-family: "Montserrat", "sans-serif";
       display: flex;
+      background-color: #fff;
     }
 
     .clock-container {
@@ -48,7 +53,7 @@
       border-radius: 50%;
       display: block;
       position: absolute;
-      right: -13px;
+      right: -12px;
     }
     .clock-col:not(:last-child):before {
       top: 35%;
@@ -76,8 +81,11 @@
     <div class="clock-col">
       <p class="clock-hours clock-timer"></p>
     </div>
-    <div class="clock-col-none">
+    <div class="clock-col">
       <p class="clock-minutes clock-timer"></p>
+    </div>
+    <div class="clock-col-none">
+      <p class="clock-seconds clock-timer"></p>
     </div>
     <div class="clock-col-none clock-col-last">
       <p class="clock-ampm clock-timer"></p>
@@ -94,6 +102,7 @@
   function updateTime() {
     document.documentElement.style.setProperty('--timer-hours', "'" + moment().format("h") + "'");
     document.documentElement.style.setProperty('--timer-minutes', "'" + moment().format("mm") + "'");
+    document.documentElement.style.setProperty('--timer-seconds', "'" + moment().format("ss") + "'");
     document.documentElement.style.setProperty('--timer-ampm', "'" + moment().format("a") + "'");
     requestAnimationFrame(updateTime);
   }
