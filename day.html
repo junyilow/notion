@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    .clock-day:before {
+      content: var(--timer-day);
+    }
+  </style>
+</head>
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="clock-container">
+    <div class="clock-col-none">
+      <p class="clock-day clock-timer"></p>
+    </div>
+  </div>
+
+  <!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.2/moment.min.js'></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () =>
+    requestAnimationFrame(updateTime)
+  )
+
+  function updateTime() {
+    document.documentElement.style.setProperty('--timer-day', "'" + moment().format("dddd") + "'");
+    requestAnimationFrame(updateTime);
+  }
+  </script>
+
+</body>
+</html>
